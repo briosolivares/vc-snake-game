@@ -1,6 +1,7 @@
 from sense_hat import SenseHat
 from time import sleep
 import random
+import voice
 
 sense = SenseHat()
 sense.low_light = True
@@ -14,6 +15,10 @@ MATRIX_MAX_VALUE = 7
 MATRIX_SIZE = 8
 
 def game():
+    ### 1. CREATE LISTENER FOR SPEECH CLASSIFIER
+    listener = voice.AudioClassifier(model_file=voice.VOICE_MODEL,
+                                    labels_file=voice.VOICE_LABELS,
+                                    audio_device_index=2)
     while True:
         gameOverFlag = False
         growSnakeFlag = False
@@ -61,18 +66,21 @@ def game():
             if gameOverFlag:
                 break
 
-            # Check joystick events
-            for event in sense.stick.get_events():
-                if event.direction == "left" and movementX != 1:
+            # Check voice commands
+            ### 2. RESPOND TO SPEECH CLASSIFICATIONS
+            command = listener.next(block=False)
+            if command:
+                command = str(command[0])
+                if command == "move_left" and movementX != 1:
                     movementX = -1
                     movementY = 0
-                elif event.direction == "right" and movementX != -1:
+                elif command == "move_right" and movementX != -1:
                     movementX = 1
                     movementY = 0
-                elif event.direction == "up" and movementY != 1:
+                elif command == "move_up" and movementY != 1:
                     movementY = -1
                     movementX = 0
-                elif event.direction == "down" and movementY != -1:
+                elif command == "move_down" and movementY != -1:
                     movementY = 1
                     movementX = 0
 
