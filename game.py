@@ -71,16 +71,16 @@ def game():
             command = listener.next(block=False)
             if command:
                 command = str(command[0])
-                if command == "move_left" and movementX != 1:
+                if command == "go_left" and movementX != 1:
                     movementX = -1
                     movementY = 0
-                elif command == "move_right" and movementX != -1:
+                elif command == "go_right" and movementX != -1:
                     movementX = 1
                     movementY = 0
-                elif command == "move_up" and movementY != 1:
+                elif command == "go_up" and movementY != 1:
                     movementY = -1
                     movementX = 0
-                elif command == "move_down" and movementY != -1:
+                elif command == "go_down" and movementY != -1:
                     movementY = 1
                     movementX = 0
 
