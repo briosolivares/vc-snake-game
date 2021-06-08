@@ -4,15 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="shortcut icon" href="static/snake.png">
     <title>VC Snake Game</title>
 </head>
 <body>
-    <h1>Welcome to VC Snake Game!</h1>
+    <h1 id="title">VC Snake Game</h1>
+    <img id="snake-img" src="static/snake.png" alt="">
+    <h2>How To Play:</h2>
+    <ol id="directions">
+        <li>Press "Play Game" below</li>
+        <li>Wait for the game to display (on the Sense HAT) after the "Let's Play!" message</li>
+        <li>
+            Use the following voice commands to control your snake
+            and try to eat as many apples as you can!
+            <ul id="commands">
+                <li>Go Up</li>
+                <li>Go Down</li>
+                <li>Go Left</li>
+                <li>Go Right</li>
+            </ul>
+        </li>
+    </ol>
     <form action="/" method="POST">
-        <label for="username">Enter your name:</label>
-        <input type="text" placeholder="Enter a username ...">
-        <input type="submit" value="Play Game">
+        <input id="play-btn" type="submit" value="Play Game">
     </form>
-    <h2>Score: {{ score }}</h2>
+    <h2>Your Score: {{ score }}</h2>
 </body>
 </html>
