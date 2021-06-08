@@ -72,27 +72,17 @@ def game():
             if command:
                 command = str(command[0])
                 if command == "go_left" and movementX != 1:
-                    print(command)
                     movementX = -1
                     movementY = 0
                 elif command == "go_right" and movementX != -1:
-                    print(command)
                     movementX = 1
                     movementY = 0
                 elif command == "go_up" and movementY != 1:
-                    print(command)
                     movementY = -1
                     movementX = 0
                 elif command == "go_down" and movementY != -1:
-                    print(command)
                     movementY = 1
                     movementX = 0
-                elif command == "exit_game":
-                    gameOverFlag=True
-
-            # Check if game-over
-            if gameOverFlag:
-                break    
 
             # Grow snake
             if growSnakeFlag:
